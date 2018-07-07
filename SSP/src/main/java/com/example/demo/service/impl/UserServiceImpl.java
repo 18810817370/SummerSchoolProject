@@ -16,8 +16,13 @@ public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
 
     @Override
-    public User findUser(){
-        return  userDAO.findUser();
+    public User findUser(String email,String passwd){
+        return  userDAO.findUser(email,passwd);
+    }
+
+    @Override
+    public User getUserbyEmail(String email){
+        return userDAO.getUserbyEmail(email);
     }
 
     @Override

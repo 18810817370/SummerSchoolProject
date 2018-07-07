@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class UserController {
 
@@ -17,15 +20,25 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping(value = "/register",method = RequestMethod.GET)
-    public String Register(@ModelAttribute("user") User user, Model model){
-        userService.insert(user);
-        return "index";
+    public String Register(HttpServletRequest request,@ModelAttribute("user") User user, Model model){
+        String email= request.getParameter("email");
+        if (userService.getUserbyEmail(email) == null){
+            userService.insert(user);
+            return "index";
+        }
+        else {
+            return "pages/examples/register.html";
+        }
     }
 
 
     @RequestMapping(value = "/login",method = RequestMethod.GET)
-    public String Login(Model model){
-        if(userService.findUser() != null){
+    public String Login(HttpServletRequest request, Model model){
+        String email = request.getParameter("email");
+        String passwd = request.getParameter("passwd");
+        User user = userService.findUser(email, passwd);
+        if(user != null){
+
             return "index";
         }
         else {
@@ -40,8 +53,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "pages/examples/login.html",method = RequestMethod.GET)
-    public String gotoLogin(Model model){
-        model.addAttribute("user",new User());
+    public String gotoLogin(){
+
         return "pages/examples/login";
     }
 

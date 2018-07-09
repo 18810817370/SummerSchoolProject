@@ -27,17 +27,17 @@
 
   <div class="card">
     <div class="card-body register-card-body">
-      <p class="login-box-msg">授权VIP</p>
+      <p class="login-box-msg">反对提案</p>
 
-      <form th:action="@{/vipuser}" th:method="get" th:object="${vipuser}">
+      <form th:action="@{/disvote}" th:method="get" th:object="${proposal}">
         <div class="form-group has-feedback">
-          <input type="text" class="form-control" placeholder="用户id" th:field="*{id}">
+          <input type="text" class="form-control" placeholder="提案id" th:field="*{ppid}">
           <span class="fa fa-user form-control-feedback"></span>
         </div>
         <div class="row">
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat">授权</button>
+            <button type="submit" class="btn btn-primary btn-block btn-flat">反对</button>
           </div>
           <!-- /.col -->
         </div>

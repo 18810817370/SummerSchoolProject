@@ -108,7 +108,7 @@
                 </a>
 			  </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="indexadmin.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-muted"></i>
                   <p>规范查询</p>
                 </a>
@@ -151,41 +151,30 @@
         <table class="table table-striped table-valign-middle">
           <thead>
             <tr>
-              <th>
-			    <input type="checkbox" name="select" />
-			    全选
-			  </th> 
 			  <th>编号</th>
 			  <th>提案名称</th>
 			  <th>作者</th>
-			  <th>截止日期</th>
 			  <th>状态</th>
-			  <th>复议数</th>
+			  <th>支持数</th>
 			  <th>反对数</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-			  <td><input type="checkbox" name="select" /></td>
-              <td>01</td>
-			  <td>
-			    <a href="#" class="nav-link">
-                  xxxxxxxxxxxxxxxxxxx
-                </a>
-              </td>
-              <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
-			  <td></td>
+            <tr th:each="s,iterStat : ${proposals}" th:class="${iterStat.odd}? 'odd'">
+              <td th:text="${s.getPpid()}"></td>
+              <td th:text="${s.getPpname()}"></td>
+              <td th:text="${s.getAuthor()}"></td>
+              <td th:text="${s.getStatus()}"></td>
+              <td th:text="${s.getVote()}"></td>
+              <td th:text="${s.getDisvote()}"></td>
             </tr>
           </tbody>
         </table>
       </div>
 	  <div class="card-footer">
 	    <div class="float-right">
-	      <button type="button" class="btn btn-primary">打印</button>
-		  <button type="undo" class="btn btn-warring">撤销</button>
+          <a type="button" class="btn btn-primary" href="/pages/examples/passpp.html">通过</a>
+          <a type="button" class="btn btn-warring" href="/pages/examples/delpp.html">删除</a>
 		</div>
 	  </div>
     </div>

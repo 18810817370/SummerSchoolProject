@@ -15,8 +15,9 @@ CREATE TABLE `user` (
 `passwd` VARCHAR(255),
 `vip` VARCHAR(255) DEFAULT 'NO',
 PRIMARY KEY (`id`)
-)ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='用户表';
+)ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='用户表';
 
 INSERT INTO user (id,username,email,passwd,vip) VALUE ( 1,'admin','admin@email','admin','YES');
 
 SET FOREIGN_KEY_CHECKS = 1;
+

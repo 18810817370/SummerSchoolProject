@@ -108,7 +108,7 @@
                 </a>
 			  </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="indexadmin.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-muted"></i>
                   <p>规范查询</p>
                 </a>
@@ -152,53 +152,13 @@
           <thead>
             <tr>
               <th>名称</th>
-              <th>日期</th>
+              <th>作者</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-		        <a href="#" class="nav-link">
-                  关于草案评审的工作规范
-                </a>
-  			  </td>
-              <td>2017/06/07</td>
-            </tr>
-            <tr>
-              <td>
-				<a href="#" class="nav-link">
-                  管理系统申请资格规范
-              </td>
-              <td>2017/05/30</td>
-            </tr>
-            <tr>
-              <td>
-				<a href="#" class="nav-link">
-                  提案草稿审批规范
-                </a>
-			  </td>
-              <td>2017/05/20</td>
-            </tr>
-            <tr>
-              <td>
-				<a href="#" class="nav-link">
-                  成立分组规范
-              </td>
-              <td>2017/05/19</td>
-            </tr>
-			<tr>
-              <td>
-			    <a href="#" class="nav-link">
-                  草案详情撰写规范
-              </td>
-              <td>2017/05/15</td>
-            </tr>
-			<tr>
-              <td>
-			    <a href="#" class="nav-link">
-                   数据管理规范
-              </td>
-              <td>2017/05/10</td>
+			<tr th:each="i:${proposals}">
+              <td th:text="${i.getPpname()}"></td>
+			  <td th:text="${i.getAuthor()}"></td>
             </tr>
           </tbody>
         </table>

@@ -108,7 +108,7 @@
                 </a>
 			  </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="indexadmin.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-muted"></i>
                   <p>规范查询</p>
                 </a>
@@ -135,41 +135,32 @@
  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  <div class="col">
-            <div class="card card-primary card-outline">
+    <div class="col">
+            <form class="card card-primary card-outline" th:action="@{/submitppadmin}" th:method="get" th:object="${proposal}" >
               <div class="card-header">
                 <h3 class="card-title">提案编制</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <div class="form-group">
-                  <input class="form-control" placeholder="提案名称:">
+                  <input class="form-control" type="text" placeholder="提案名称:" th:field="*{ppname}">
                 </div>
                 <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
+                    <input id="compose-textarea" type="text" class="form-control" style="height: 400px" th:field="*{ppcontent}">
                       提案内容：
-                    </textarea>
-                </div>
-                <div class="form-group">
-                  <div class="btn btn-default btn-file">
-                    <i class="fa fa-paperclip"></i> Attachment
-                    <input type="file" name="attachment">
-                  </div>
-                  <p class="help-block">Max. 32MB</p>
+                    </input>
                 </div>
               </div>
               <!-- /.card-body -->
               <div class="card-footer">
                 <div class="float-right">
-                  <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
+                  <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> 提交</button>
                 </div>
-                <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
               </div>
               <!-- /.card-footer -->
-            </div>
+            </form>
             <!-- /. box -->
-          </div>
+    </div>
           <!-- /.col -->
   </div>
   <!-- /.content-wrapper -->

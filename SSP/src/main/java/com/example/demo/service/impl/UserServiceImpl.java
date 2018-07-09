@@ -39,4 +39,32 @@ public class UserServiceImpl implements UserService {
         return true;
     }
 
+    @Override
+    public boolean delete(User user) {
+        if (null == user){
+            return false;
+        }
+        // do something...
+        userDAO.delete(user);
+        return true;
+    }
+	
+	@Override
+    public boolean update(User user){
+        if( null == user){
+            return false;
+        }
+        userDAO.update(user);
+        return true;
+    }
+
+    @Override
+    public boolean givevip(User user){
+        if( null == user){
+            return false;
+        }
+        userDAO.givevip(user);
+        return true;
+    }
+
 }

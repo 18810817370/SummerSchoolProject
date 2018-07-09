@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>能力规范文稿管理系统 | Dashboard</title>
+  <title>能力规范文稿管理系统 | Maintian</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -38,19 +39,14 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">主页</a>
+        <a href="indexlogined.html" class="nav-link">主页</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">联系人</a>
       </li>
       <li class="nav-item">
-        <a href="pages/examples/login.html" class="nav-link">
-        <p>登录</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="pages/examples/register.html" class="nav-link">
-        <p>注册</p>
+        <a href="/logout" class="nav-link">
+        <p>注销</p>
         </a>
       </li>
     </ul>
@@ -73,7 +69,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link">
+    <a href="indexlogined.html" class="brand-link">
       <span class="brand-text font-weight-light">能力规范文稿管理系统</span>
     </a>
 
@@ -85,7 +81,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block" th:text="${user.getUsername()}"></a>
         </div>
       </div>
 
@@ -95,15 +91,9 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
               <li class="nav-item">
-                <a href="pages/examples/login.html" class="nav-link">
+                <a href="/logout" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-success"></i>
-                  <p>登录</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/register.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon text-primary"></i>
-                  <p>注册</p>
+                  <p>注销</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -127,7 +117,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-danger"></i>
-                  <p>注规范编制</p>
+                  <p>规范编制</p>
                 </a>
               </li>
 			  <li class="nav-item">
@@ -163,47 +153,40 @@
           <thead>
             <tr>
 			  <th>序号</th>
-			  <th>姓名</th>
-			  <th>单位</th>
-			  <th>职称</th>
-			  <th>职务</th>
-			  <th>电话</th>
+			  <th>用户名</th>
+			  <th>性别</th>
+			  <th>生日</th>
+			  <th>地址</th>
 			  <th>邮箱</th>
-			  <th>微信</th>
+			  <th>行业分会</th>
+			  <th>专委会</th>
+              <th>是否会员</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>01</td>
-			  <td>
-			    <a href="#" class="nav-link">
-                  张三
-                </a>
-              </td>
-              <td>bjut</td>
-			  <td>教授</td>
-			  <td>校长</td>
-			  <td>21231231</td>
-			  <td>sahd@124.com</td>
-			  <td>djahsdkahj</td>
-            </tr>
-			<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
+			<tr th:each="s,iterStat : ${users}" th:class="${iterStat.odd}? 'odd'">
+              <td th:text="${s.getId()}"></td>
+              <td th:text="${s.getUsername()}"></td>
+			  <td th:text="${s.getGender()}"></td>
+			  <td th:text="${s.getBirthday()}"></td>
+			  <td th:text="${s.getAddress()}"></td>
+			  <td th:text="${s.getEmail()}"></td>
+			  <td th:text="${s.getCommunity()}"></td>
+			  <td th:text="${s.getOrg()}"></td>
+              <td th:text ="${s.getVip()}"></td>
 			</tr>
           </tbody>
         </table>
       </div>
 	  <div class="card-footer">
-	    <div class="float-right">
-	      
-		</div>
+        <from class="float-right" th:action="@{/delete}" th:method="get" th:object="${deluser}">
+          <input type="id" placeholder="请输入要删除id" th:field="*{id}">
+          <button type="submit" class="btn btn-warring">删除</button>
+        </from>
+        <from class="float-right" th:action="@{/givevip}" th:method="get" th:object="${vipuser}">
+          <input type="id" placeholder="请输入通过候选id" th:field="*{id}">
+          <button type="submit" class="btn btn-primary">通过</button>
+        </from>
 	  </div>
     </div>
   <!-- /.card -->

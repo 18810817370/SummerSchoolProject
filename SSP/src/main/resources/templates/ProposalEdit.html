@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>能力规范文稿管理系统 | Dashboard</title>
+  <title>能力规范文稿管理系统 | ProposalEdit</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -38,19 +38,14 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index.html" class="nav-link">主页</a>
+        <a href="indexlogined.html" class="nav-link">主页</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">联系人</a>
       </li>
       <li class="nav-item">
-        <a href="pages/examples/login.html" class="nav-link">
-        <p>登录</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="pages/examples/register.html" class="nav-link">
-        <p>注册</p>
+        <a href="/logout" class="nav-link">
+        <p>注销</p>
         </a>
       </li>
     </ul>
@@ -73,7 +68,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index.html" class="brand-link">
+    <a href="indexlogined.html" class="brand-link">
       <span class="brand-text font-weight-light">能力规范文稿管理系统</span>
     </a>
 
@@ -85,7 +80,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block" th:text="${user.getUsername()}"></a>
         </div>
       </div>
 
@@ -95,15 +90,9 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
               <li class="nav-item">
-                <a href="pages/examples/login.html" class="nav-link">
+                <a href="/logout" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-success"></i>
-                  <p>登录</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="pages/examples/register.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon text-primary"></i>
-                  <p>注册</p>
+                  <p>注销</p>
                 </a>
               </li>
               <li class="nav-item">
@@ -127,13 +116,7 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-danger"></i>
-                  <p>注规范编制</p>
-                </a>
-              </li>
-			  <li class="nav-item">
-                <a href="Maintain.html" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon text-secondary"></i>
-                  <p>信息维护</p>
+                  <p>规范编制</p>
                 </a>
               </li>
         </ul>

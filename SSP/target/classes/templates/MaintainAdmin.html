@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>能力规范文稿管理系统 | ProposalEdit</title>
+  <title>能力规范文稿管理系统 | Maintain</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -38,7 +39,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="indexlogined.html" class="nav-link">主页</a>
+        <a href="indexadmin.html" class="nav-link">主页</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="#" class="nav-link">联系人</a>
@@ -68,7 +69,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="indexlogined.html" class="brand-link">
+    <a href="indexadmin.html" class="brand-link">
       <span class="brand-text font-weight-light">能力规范文稿管理系统</span>
     </a>
 
@@ -96,13 +97,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="ProposalQuery.html" class="nav-link">
+                <a href="ProposalQueryAdmin.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-muted"></i>
                   <p>提案查询</p>
                 </a>
 			  </li>
               <li class="nav-item">
-                <a href="ProposalEdit.html" class="nav-link">
+                <a href="ProposalEditAdmin.html" class="nav-link">
                   <i class="fa fa-circle-o nav-icon text-danger"></i>
                   <p>提案编制</p>
                 </a>
@@ -119,6 +120,12 @@
                   <p>规范编制</p>
                 </a>
               </li>
+			  <li class="nav-item">
+                <a href="MaintainAdmin.html" class="nav-link">
+                  <i class="fa fa-circle-o nav-icon text-secondary"></i>
+                  <p>信息维护</p>
+                </a>
+              </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -129,42 +136,56 @@
  
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-  <div class="col">
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h3 class="card-title">提案编制</h3>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body">
-                <div class="form-group">
-                  <input class="form-control" placeholder="提案名称:">
-                </div>
-                <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 300px">
-                      提案内容：
-                    </textarea>
-                </div>
-                <div class="form-group">
-                  <div class="btn btn-default btn-file">
-                    <i class="fa fa-paperclip"></i> Attachment
-                    <input type="file" name="attachment">
-                  </div>
-                  <p class="help-block">Max. 32MB</p>
-                </div>
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-                <div class="float-right">
-                  <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button>
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send</button>
-                </div>
-                <button type="reset" class="btn btn-default"><i class="fa fa-times"></i> Discard</button>
-              </div>
-              <!-- /.card-footer -->
-            </div>
-            <!-- /. box -->
-          </div>
-          <!-- /.col -->
+    <div class="card">
+      <div class="card-header no-border">
+        <h3 class="card-title">信息维护</h3>
+        <div class="card-tools">
+          <a href="#" class="btn btn-tool btn-sm">
+            <i class="fa fa-download"></i>
+          </a>
+          <a href="#" class="btn btn-tool btn-sm">
+            <i class="fa fa-bars"></i>
+          </a>
+        </div>
+      </div>
+      <div class="card-body p-0">
+        <table class="table table-striped table-valign-middle">
+          <thead>
+            <tr>
+			  <th>序号</th>
+			  <th>用户名</th>
+			  <th>性别</th>
+			  <th>生日</th>
+			  <th>地址</th>
+			  <th>邮箱</th>
+			  <th>行业分会</th>
+			  <th>专委会</th>
+              <th>是否会员</th>
+            </tr>
+          </thead>
+          <tbody>
+			<tr th:each="s,iterStat : ${users}" th:class="${iterStat.odd}? 'odd'">
+              <td th:text="${s.getId()}"></td>
+              <td th:text="${s.getUsername()}"></td>
+			  <td th:text="${s.getGender()}"></td>
+			  <td th:text="${s.getBirthday()}"></td>
+			  <td th:text="${s.getAddress()}"></td>
+			  <td th:text="${s.getEmail()}"></td>
+			  <td th:text="${s.getCommunity()}"></td>
+			  <td th:text="${s.getOrg()}"></td>
+              <td th:text ="${s.getVip()}"></td>
+			</tr>
+          </tbody>
+        </table>
+      </div>
+	  <div class="card-footer">
+        <div class="float-right">
+          <a type="button" class="btn btn-primary" href="/pages/examples/vipuser.html">授权VIP</a>
+          <a type="button" class="btn btn-warring" href="/pages/examples/deluser.html">删除用户</a>
+        </div>
+	  </div>
+    </div>
+  <!-- /.card -->
   </div>
   <!-- /.content-wrapper -->
 </div>

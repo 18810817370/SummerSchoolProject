@@ -113,12 +113,18 @@
                   <p>规范查询</p>
                 </a>
 			  </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-circle-o nav-icon text-danger"></i>
-                  <p>规范编制</p>
-                </a>
-              </li>
+             <li class="nav-item">
+               <a href="NonViplist.html" class="nav-link">
+                 <i class="fa fa-circle-o nav-icon text-danger"></i>
+                 <p>会员推荐</p>
+               </a>
+             </li>
+             <li class="nav-item">
+               <a href="Recommendlist.html" class="nav-link">
+                 <i class="fa fa-circle-o nav-icon text-secondary"></i>
+                 <p>推荐列表</p>
+               </a>
+             </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -140,8 +146,7 @@
             <input class="form-control" type="text" placeholder="提案名称:" th:field="*{ppname}">
           </div>
           <div class="form-group">
-            <input id="compose-textarea" type="text" class="form-control" style="height: 400px" th:field="*{ppcontent}">
-            提案内容：
+            <textarea id="compose-textarea" type="text" class="form-control" placeholder="提案内容：" style="height: 400px" th:field="*{ppcontent}"></textarea>
             </input>
           </div>
         </div>

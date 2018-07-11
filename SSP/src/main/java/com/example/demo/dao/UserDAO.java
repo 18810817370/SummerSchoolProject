@@ -22,6 +22,9 @@ public interface UserDAO {
     @Select(value = "SELECT * FROM user WHERE user.email = #{email} AND user.passwd = #{passwd} AND user.vip = 'YES'")
     User findUser(@Param("email") String email, @Param("passwd") String passwd);
 
+    @Select(value = "SELECT * FROM user WHERE user.vip = 'NO'")
+    List<User> getNonVipUser();
+
 	@Delete(value = "DELETE from user WHERE user.id = #{id}")
     int delete(User user);
 

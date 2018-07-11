@@ -1,9 +1,14 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.Proposal;
+import com.example.demo.entity.Recommendation;
 import com.example.demo.entity.User;
 import com.example.demo.service.ProposalService;
+import com.example.demo.service.RecommendationService;
 import com.example.demo.service.UserService;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.tomcat.util.bcel.classfile.Constant;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -22,6 +27,9 @@ public class UserController {
 
     @Autowired
     private ProposalService proposalService;
+
+    @Autowired
+    private RecommendationService recommendationService;
 
     private User user;
 
@@ -123,6 +131,7 @@ public class UserController {
                 return "redirect:/indexadmin.html";
             }
             else {
+                request.getSession().setAttribute("user",user);
                 return "redirect:/indexlogined.html";
             }
         }
@@ -161,6 +170,44 @@ public class UserController {
     public String SubmitppAdmin(@ModelAttribute("proposal") Proposal proposal){
         proposalService.insert(proposal,user);
         return "redirect:/ProposalQueryAdmin.html";
+    }
+
+
+    @RequestMapping(value = "RecommendlistAdmin.html",method = RequestMethod.GET)
+    public String getRcommendlistAdmin(HttpServletRequest request){
+        request.setAttribute("user",user);
+        List<Recommendation> list = recommendationService.getAllRecommendation();
+        request.setAttribute("recommends",list);
+        return "RecommendlistAdmin";
+    }
+
+    @RequestMapping(value = "Recommendlist.html",method = RequestMethod.GET)
+    public String getRcommendlist(HttpServletRequest request){
+        request.setAttribute("user",user);
+        List<Recommendation> list = recommendationService.getAllRecommendation();
+        request.setAttribute("recommends",list);
+        return "Recommendlist";
+    }
+
+    @RequestMapping(value = "/recommend",method = RequestMethod.GET)
+    public String recommend(@ModelAttribute("recommendation") Recommendation recommendation){
+        recommendationService.insert(recommendation,user);
+        return "redirect:/Recommendlist.html";
+    }
+
+    @RequestMapping(value = "recommend.html",method = RequestMethod.GET)
+    public String gotoRecommend(HttpServletRequest request,Model model){
+        request.setAttribute("user",user);
+        model.addAttribute("recommendation",new Recommendation());
+        return "recommend";
+    }
+
+    @RequestMapping(value = "NonViplist.html",method = RequestMethod.GET)
+    public String NonViplist(HttpServletRequest request){
+        request.setAttribute("user",user);
+        List<User> list = userService.getNonVipUser();
+        request.setAttribute("users",list);
+        return "NonViplist";
     }
 
     @RequestMapping(value = "ProposalEditAdmin.html",method = RequestMethod.GET)

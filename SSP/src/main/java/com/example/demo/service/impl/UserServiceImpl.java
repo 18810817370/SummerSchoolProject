@@ -31,6 +31,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<User> getNonVipUser(){
+        return userDAO.getNonVipUser();
+    }
+
+    @Override
     public boolean insert(User user){
         if( null == user){
             return false;

@@ -7,6 +7,8 @@ public interface UserService {
 
     List<User> getAllUser();
 
+    List<User> getNonVipUser();
+
     boolean insert(User user);
 	
 	boolean update(User user);

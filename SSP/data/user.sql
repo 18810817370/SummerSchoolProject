@@ -1,0 +1,23 @@
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+`id` INT(255) NOT NULL AUTO_INCREMENT,
+`username` VARCHAR(255) CHARACTER SET utf8,
+`gender` VARCHAR(255) CHARACTER SET utf8,
+`birthday` Date,
+`address` VARCHAR(255) CHARACTER SET utf8,
+`email` VARCHAR(255),
+`community` VARCHAR(255) CHARACTER SET utf8,
+`org` VARCHAR(255) CHARACTER SET utf8,
+`passwd` VARCHAR(255),
+`vip` VARCHAR(255) DEFAULT 'NO',
+PRIMARY KEY (`id`)
+)ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='用户表';
+
+INSERT INTO user (id,username,email,passwd,vip) VALUE ( 1,'admin','admin@email','admin','YES');
+
+SET FOREIGN_KEY_CHECKS = 1;
+
